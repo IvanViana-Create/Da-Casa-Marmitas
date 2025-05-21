@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pedido - Da Casa Marmitas</title>
+  <link rel="stylesheet" href="index.css">
+  <style>
+    .formulario {
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 600px;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      position: relative;
+    }
+
+    .formulario input,
+    .formulario select,
+    .formulario textarea {
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 2rem;
+    }
+
+    .formulario button {
+      background-color: #f20505;
+      color: #fff;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+
+    .formulario button:hover {
+      background-color: #d40404;
+    }
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 50px 100px;
+    }
+
+    .pedido-form {
+      margin-top: 6rem;
+      display: flex;
+      gap: 2rem;
+    }
+
+    .descricao-marmita {
+      background-color: #f4f4f4;
+      border: 1px solid #ccc;
+      padding: 15px;
+      border-radius: 8px;
+      width: 400px;
+      height: fit-content;
+      font-size: 2rem;
+    }
+
+    .imagemlateral {
+      margin-left: 40px;
+    }
+
+    @media (max-width: 900px) {
+      .container {
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+      }
+
+      .pedido-form {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .descricao-marmita {
+        width: 100%;
+      }
+
+      .imagemlateral {
+        margin-left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="cabeça">
+    <nav class="navegação">
+      <a href="#"><img class="logo" src="LOGO.png" alt="Logo"></a>
+      <ul>
+        <li><a class="Contatos" href="#">Contatos</a></li>
+        <li><a class="check" href="#">Planos</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="pedido-form">
+      <div>
+        <h3>Pedido de Marmita</h3>
+        <p>Preencha os dados abaixo para fazer seu pedido:</p>
+        <form class="formulario" action="#" method="post">
+          <input type="text" name="nome" placeholder="Seu nome" required>
+          <input type="tel" name="telefone" placeholder="Telefone para contato" required>
+
+          <select name="tamanho" required>
+            <option value="">Selecione o tamanho da marmita</option>
+            <option value="pequena">Pequena</option>
+            <option value="media">Média</option>
+            <option value="grande">Grande</option>
+          </select>
+
+          <select name="tipo" id="tipo-marmita" required onchange="atualizarDescricao()">
+            <option value="">Selecione o tipo de marmita</option>
+            <option value="strogonoff-frango">Strogonoff de Frango</option>
+            <option value="strogonoff-carne">Strogonoff de Carne</option>
+            <option value="frango-milanesa">Frango à Milanesa</option>
+            <option value="carne-milanesa">Carne à Milanesa</option>
+          </select>
+
+          <textarea name="observacoes" rows="4" placeholder="Observações (opcional)"></textarea>
+          <button type="button" onclick="enviarPedido()">Enviar Pedido</button>
+        </form>
+      </div>
+
+      <div class="descricao-marmita" id="descricao">
+        🍱 Selecione uma marmita para ver os ingredientes.
+      </div>
+    </section>
+
+    <aside class="imagemlateral">
+      <img class="marmita" src="marmitas.png" alt="Imagem de marmita">
+    </aside>
+  </main>
+
+  <script>
+    function atualizarDescricao() {
+      const descricao = document.getElementById('descricao');
+      const tipo = document.getElementById('tipo-marmita').value;
+
+      const descricoes = {
+        'strogonoff-frango': '🍗 **Strogonoff de Frango**\n- Strogonoff de frango\n- Arroz\n- Batata palha\n- Feijão (opcional)',
+        'strogonoff-carne': '🥩 **Strogonoff de Carne**\n- Strogonoff de carne\n- Arroz\n- Batata palha\n- Feijão (opcional)',
+        'frango-milanesa': '🍗 **Frango à Milanesa**\n- Frango à milanesa\n- Arroz\n- Feijão\n- Batata frita ou purê\n- Feijão (opcional)',
+        'carne-milanesa': '🥩 **Carne à Milanesa**\n- Carne à milanesa\n- Arroz\n- Feijão\n- Batata frita ou purê\n- Feijão (opcional)'
+      };
+
+      if (descricoes[tipo]) {
+        descricao.innerText = descricoes[tipo];
+      } else {
+        descricao.innerText = '🍱 Selecione uma marmita para ver os ingredientes.';
+      }
+    }
+  </script>
+
+</body>
+</html>
+<script>
+  function enviarPedido() {
+    const nome = document.querySelector('input[name="nome"]').value;
+    const telefone = document.querySelector('input[name="telefone"]').value;
+    const tamanho = document.querySelector('select[name="tamanho"]').value;
+    const tipo = document.querySelector('select[name="tipo"]').value;
+    const observacoes = document.querySelector('textarea[name="observacoes"]').value;
+
+    if (!nome || !telefone || !tamanho || !tipo) {
+      alert("Por favor, preencha todos os campos obrigatórios.");
+      return;
+    }
+
+    const tiposDescricao = {
+      'strogonoff-frango': 'Strogonoff de Frango',
+      'strogonoff-carne': 'Strogonoff de Carne',
+      'frango-milanesa': 'Frango à Milanesa',
+      'carne-milanesa': 'Carne à Milanesa'
+    };
+
+    const mensagem = `Olá! Gostaria de fazer um pedido de marmita:
+    
+📛 Nome: ${nome}
+📞 Telefone: ${telefone}
+🍽️ Tamanho: ${tamanho}
+🍱 Tipo: ${tiposDescricao[tipo]}
+📝 Observações: ${observacoes || 'Nenhuma'}
+💰  Pagamento será feito na entrega, ou mediante envio de comprovante por whatsapp!
+
+Obrigado!`;
+
+    const numeroWhatsApp = '+5548988652621'; // substitua pelo número da empresa com DDI e DDD (ex: 55 para Brasil)
+    const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
+
+    window.open(url, '_blank');
+  }
+</script>
