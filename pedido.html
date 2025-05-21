@@ -69,24 +69,43 @@
       margin-left: 40px;
     }
 
-    @media (max-width: 900px) {
+    /* RESPONSIVO */
+    @media (max-width: 768px) {
       .container {
-        flex-direction: column;
-        align-items: center;
-        gap: 2rem;
+        flex-direction: column !important;
+        align-items: center !important;
+        padding: 20px !important;
       }
 
       .pedido-form {
         flex-direction: column;
         align-items: center;
+        width: 100%;
+      }
+
+      .formulario {
+        width: 100%;
+        max-width: 100%;
+        padding: 20px;
       }
 
       .descricao-marmita {
         width: 100%;
+        font-size: 1.4rem;
+        margin-top: 1rem;
       }
 
       .imagemlateral {
-        margin-left: 0;
+        margin: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+
+      .imagemlateral img {
+        width: 100%;
+        max-width: 400px;
+        height: auto;
       }
     }
   </style>
@@ -148,10 +167,10 @@
       const tipo = document.getElementById('tipo-marmita').value;
 
       const descricoes = {
-        'strogonoff-frango': '🍗 **Strogonoff de Frango**\n- Strogonoff de frango\n- Arroz\n- Batata palha\n- Feijão (opcional)',
-        'strogonoff-carne': '🥩 **Strogonoff de Carne**\n- Strogonoff de carne\n- Arroz\n- Batata palha\n- Feijão (opcional)',
-        'frango-milanesa': '🍗 **Frango à Milanesa**\n- Frango à milanesa\n- Arroz\n- Feijão\n- Batata frita ou purê\n- Feijão (opcional)',
-        'carne-milanesa': '🥩 **Carne à Milanesa**\n- Carne à milanesa\n- Arroz\n- Feijão\n- Batata frita ou purê\n- Feijão (opcional)'
+        'strogonoff-frango': '🍗 Strogonoff de Frango\n- Strogonoff de frango\n- Arroz\n- Batata palha\n- Feijão (opcional)',
+        'strogonoff-carne': '🥩 Strogonoff de Carne\n- Strogonoff de carne\n- Arroz\n- Batata palha\n- Feijão (opcional)',
+        'frango-milanesa': '🍗 Frango à Milanesa\n- Frango à milanesa\n- Arroz\n- Feijão\n- Batata frita ou purê\n- Feijão (opcional)',
+        'carne-milanesa': '🥩 Carne à Milanesa\n- Carne à milanesa\n- Arroz\n- Feijão\n- Batata frita ou purê\n- Feijão (opcional)'
       };
 
       if (descricoes[tipo]) {
@@ -160,44 +179,42 @@
         descricao.innerText = '🍱 Selecione uma marmita para ver os ingredientes.';
       }
     }
-  </script>
 
-</body>
-</html>
-<script>
-  function enviarPedido() {
-    const nome = document.querySelector('input[name="nome"]').value;
-    const telefone = document.querySelector('input[name="telefone"]').value;
-    const tamanho = document.querySelector('select[name="tamanho"]').value;
-    const tipo = document.querySelector('select[name="tipo"]').value;
-    const observacoes = document.querySelector('textarea[name="observacoes"]').value;
+    function enviarPedido() {
+      const nome = document.querySelector('input[name="nome"]').value;
+      const telefone = document.querySelector('input[name="telefone"]').value;
+      const tamanho = document.querySelector('select[name="tamanho"]').value;
+      const tipo = document.querySelector('select[name="tipo"]').value;
+      const observacoes = document.querySelector('textarea[name="observacoes"]').value;
 
-    if (!nome || !telefone || !tamanho || !tipo) {
-      alert("Por favor, preencha todos os campos obrigatórios.");
-      return;
-    }
+      if (!nome || !telefone || !tamanho || !tipo) {
+        alert("Por favor, preencha todos os campos obrigatórios.");
+        return;
+      }
 
-    const tiposDescricao = {
-      'strogonoff-frango': 'Strogonoff de Frango',
-      'strogonoff-carne': 'Strogonoff de Carne',
-      'frango-milanesa': 'Frango à Milanesa',
-      'carne-milanesa': 'Carne à Milanesa'
-    };
+      const tiposDescricao = {
+        'strogonoff-frango': 'Strogonoff de Frango',
+        'strogonoff-carne': 'Strogonoff de Carne',
+        'frango-milanesa': 'Frango à Milanesa',
+        'carne-milanesa': 'Carne à Milanesa'
+      };
 
-    const mensagem = `Olá! Gostaria de fazer um pedido de marmita:
-    
+      const mensagem = `Olá! Gostaria de fazer um pedido de marmita:
+
 📛 Nome: ${nome}
 📞 Telefone: ${telefone}
 🍽️ Tamanho: ${tamanho}
 🍱 Tipo: ${tiposDescricao[tipo]}
 📝 Observações: ${observacoes || 'Nenhuma'}
-💰  Pagamento será feito na entrega, ou mediante envio de comprovante por whatsapp!
+💰 Pagamento será feito na entrega, ou mediante envio de comprovante por whatsapp!
 
 Obrigado!`;
 
-    const numeroWhatsApp = '+5548988652621'; // substitua pelo número da empresa com DDI e DDD (ex: 55 para Brasil)
-    const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
+      const numeroWhatsApp = '+5548988652621';
+      const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
+      window.open(url, '_blank');
+    }
+  </script>
 
-    window.open(url, '_blank');
-  }
-</script>
+</body>
+</html>
