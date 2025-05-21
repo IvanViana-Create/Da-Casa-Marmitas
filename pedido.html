@@ -6,109 +6,120 @@
   <title>Pedido - Da Casa Marmitas</title>
   <link rel="stylesheet" href="index.css">
   <style>
-    .formulario {
-      background: #fff;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
-      width: 100%;
-      max-width: 600px;
-      display: flex;
+  .formulario {
+    background: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    position: relative;
+  }
+
+  .formulario input,
+  .formulario select,
+  .formulario textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1.6rem;
+  }
+
+  .formulario button {
+    background-color: #f20505;
+    color: #fff;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.6rem;
+    cursor: pointer;
+  }
+
+  .formulario button:hover {
+    background-color: #d40404;
+  }
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 50px 100px;
+  }
+
+  .pedido-form {
+    margin-top: 6rem;
+    display: flex;
+    gap: 2rem;
+  }
+
+  .descricao-marmita {
+    background-color: #f4f4f4;
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 8px;
+    width: 380px;
+    height: fit-content;
+    font-size: 1.8rem;
+  }
+
+  .imagemlateral {
+    margin-left: 40px;
+  }
+
+  /* RESPONSIVO */
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column !important;
+      align-items: center !important;
+      padding: 20px !important;
+    }
+
+    .pedido-form {
       flex-direction: column;
-      gap: 2rem;
-      position: relative;
+      align-items: center;
+      width: 100%;
+    }
+
+    .formulario {
+      width: 100%;
+      max-width: 100%;
+      padding: 20px;
     }
 
     .formulario input,
     .formulario select,
     .formulario textarea {
-      padding: 12px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 2rem;
+      font-size: 1.4rem;
     }
 
     .formulario button {
-      background-color: #f20505;
-      color: #fff;
-      padding: 12px 20px;
-      border: none;
-      border-radius: 5px;
-      font-size: 2rem;
-      cursor: pointer;
-    }
-
-    .formulario button:hover {
-      background-color: #d40404;
-    }
-
-    .container {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      padding: 50px 100px;
-    }
-
-    .pedido-form {
-      margin-top: 6rem;
-      display: flex;
-      gap: 2rem;
+      font-size: 1.4rem;
+      padding: 8px 14px;
     }
 
     .descricao-marmita {
-      background-color: #f4f4f4;
-      border: 1px solid #ccc;
-      padding: 15px;
-      border-radius: 8px;
-      width: 400px;
-      height: fit-content;
-      font-size: 2rem;
+      width: 100%;
+      font-size: 1.4rem;
+      margin-top: 1rem;
     }
 
     .imagemlateral {
-      margin-left: 40px;
+      margin: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
     }
 
-    /* RESPONSIVO */
-    @media (max-width: 768px) {
-      .container {
-        flex-direction: column !important;
-        align-items: center !important;
-        padding: 20px !important;
-      }
-
-      .pedido-form {
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-      }
-
-      .formulario {
-        width: 100%;
-        max-width: 100%;
-        padding: 20px;
-      }
-
-      .descricao-marmita {
-        width: 100%;
-        font-size: 1.4rem;
-        margin-top: 1rem;
-      }
-
-      .imagemlateral {
-        margin: 0;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-      }
-
-      .imagemlateral img {
-        width: 100%;
-        max-width: 400px;
-        height: auto;
-      }
+    .imagemlateral img {
+      width: 100%;
+      max-width: 400px;
+      height: auto;
     }
-  </style>
+  }
+</style>
 </head>
 <body>
 
